@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Rekomendasi Lagu & Film Berdasarkan Mood</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    .result {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px 40px;
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      display: inline-block;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .container {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #e0e0e0;
+      font-size: 0.95em;
+      font-weight: 500;
+      transition: color 0.4s ease;
+      text-shadow: 0px 1px 2px rgba(0,0,0,0.4); /* agar tetap terlihat di background terang */
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎵 MoodMatch: Rekomendasi Lagu & Film 🎬</h1>
+
+    <form method="POST" action="/rekomendasi" class="fade-in">
+      <label for="kategori">Pilih Kategori:</label>
+      <select name="kategori" id="kategori" required>
+        <option value="normies" {% if kategori == 'normies' %}selected{% endif %}>A. Normies</option>
+        <option value="kpopers" {% if kategori == 'kpopers' %}selected{% endif %}>B. Kpopers</option>
+        <option value="wibu" {% if kategori == 'wibu' %}selected{% endif %}>C. Wibu</option>
+        <option value="random" {% if kategori == 'random' %}selected{% endif %}>D. Random</option>
+      </select>
+
+      <label for="mood">Pilih Mood Kamu:</label>
+      <select name="mood" id="mood" required>
+        <option value="senang" {% if mood == 'senang' %}selected{% endif %}>A. Senang 😀</option>
+        <option value="sedih" {% if mood == 'sedih' %}selected{% endif %}>B. Sedih 😢</option>
+        <option value="marah" {% if mood == 'marah' %}selected{% endif %}>C. Marah 😠</option>
+        <option value="tenang" {% if mood == 'tenang' %}selected{% endif %}>D. Tenang 😌</option>
+      </select>
+
+      <button type="submit">Tampilkan Rekomendasi</button>
+    </form>
+
+    {% if mood %}
+    <div class="result fade-in" id="result-box">
+      <h2>Mood: <span>{{ mood | capitalize }}</span></h2>
+      <h3>Kategori: <span>{{ kategori | capitalize }}</span></h3>
+      <p><strong>🎧 Lagu:</strong> {{ lagu }}</p>
+      <p><strong>🎥 Film:</strong> {{ film }}</p>
+    </div>
+    {% endif %}
+  </div>
+
+  <footer id="footer">🧠 Dibuat oleh Kelompok 4</footer>
+
+  <script>
+    // Efek warna latar sesuai mood
+    const mood = "{{ mood }}";
+    const body = document.body;
+    const footer = document.getElementById("footer");
+
+    if (mood === "senang") {
+      body.style.background = "linear-gradient(120deg, #ffe259, #ffa751)";
+      footer.style.color = "#f3f3f3";
+    } 
+    else if (mood === "sedih") {
+      body.style.background = "linear-gradient(120deg, #667db6, #0082c8, #0082c8, #667db6)";
+      footer.style.color = "#dfe8ff";
+    } 
+    else if (mood === "marah") {
+      body.style.background = "linear-gradient(120deg, #ff512f, #dd2476)";
+      footer.style.color = "#fff0f0";
+    } 
+    else if (mood === "tenang") {
+      body.style.background = "linear-gradient(120deg, #a8edea, #fed6e3)";
+      footer.style.color = "#555"; // warna abu gelap agar tetap terbaca
+      footer.style.textShadow = "0px 1px 2px rgba(255,255,255,0.5)";
+    } 
+    else {
+      body.style.background = "linear-gradient(120deg, #89f7fe, #66a6ff)";
+      footer.style.color = "#e0e0e0";
+    }
+  </script>
+</body>
+</html>
