@@ -1,0 +1,100 @@
+
+/* Gaya umum */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #89f7fe, #66a6ff);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  color: #333;
+}
+
+/* Judul utama */
+h1 {
+  margin-top: 60px;
+  color: #222;
+  font-size: 2em;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Form input */
+form {
+  background: #fff;
+  padding: 25px 35px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Input teks */
+input[type="text"] {
+  width: 280px;
+  padding: 10px 15px;
+  border: 2px solid #66a6ff;
+  border-radius: 8px;
+  outline: none;
+  font-size: 1em;
+  transition: 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: #1e90ff;
+  box-shadow: 0 0 5px rgba(30,144,255,0.5);
+}
+
+/* Tombol */
+button {
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  font-size: 1em;
+  transition: background 0.3s, transform 0.1s;
+}
+
+button:hover {
+  background-color: #0077ff;
+  transform: scale(1.05);
+}
+
+/* Hasil rekomendasi */
+.result {
+  margin-top: 25px;
+  background: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  text-align: left;
+  max-width: 400px;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.result h3 {
+  margin-top: 0;
+  color: #1e90ff;
+}
+
+/* Animasi muncul */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsif untuk HP */
+@media (max-width: 500px) {
+  input[type="text"] {
+    width: 200px;
+  }
+  form {
+    padding: 20px;
+  }
+}
